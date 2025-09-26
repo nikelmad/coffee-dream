@@ -129,7 +129,7 @@ body {
 
 .card-content {
     padding: 15px;
-   
+
 }
 
 .card h3 {
@@ -249,22 +249,7 @@ body {
     margin-top: 100px;
     justify-content: center;
     position: relative;
-    top:0;
-}
-
-.image-wrapper{
-    display: flex;
-    width: 80%;
-    height: 80vh;
-    overflow: hidden;
-    justify-content: center;
-    align-items: center;
-}
-
-.image-wrapper > img {
-    object-fit: fill;
-    width: 100%;
-    height: 100%;
+    top: 0;
 }
 
 .xxx {
@@ -323,7 +308,7 @@ body {
     background-color: #faf5ef;
 }
 
-.fimg{
+.fimg {
     padding-bottom: 60px;
     margin-bottom: 60px;
 }
@@ -437,9 +422,41 @@ footer {
     margin-left: -280px;
 }
 
-body > footer{
+body>footer {
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
+}
+
+.image-wrapper {
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-wrapper>img {
+    width: 100%;
+    height: 100%;
+}
+
+.main-wrapper {
+    width: 80%;
+    height: 80vh;
+}
+
+.scalable-wrapper>img {
+    display: block;
+    transform: scale(1.0);
+    transition: transform 0.3s ease;
+}
+
+.scalable-wrapper>img:hover {
+    transform: scale(1.3);
+}
+
+.invisible-link {
+    color: inherit;
+    text-decoration: none;
 }
