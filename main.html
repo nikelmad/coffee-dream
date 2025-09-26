@@ -22,7 +22,9 @@
 
     <div class="top poloska">
         <div class="text underline">
-            КАЛЬВАРИЙСКАЯ 8 МИНСК
+            <a class="invisible-link" href="#map-anchor">
+                КАЛЬВАРИЙСКАЯ 8 МИНСК
+            </a>
         </div>
 
         <div class="logo">
@@ -45,7 +47,7 @@
                 МЫ
             </a>
         </div>
-        
+
         <div>
             <a class="menuLink underline" href="file:menu.html">ПОСМОТРЕТЬ
                 МЕНЮ
@@ -60,9 +62,12 @@
 
     <div class="fimg poloska">
         <div class="imcd">
-            <div class="image-wrapper">
-                <img src=file:images/main1/ff2.png>
+            <div class="image-wrapper main-wrapper">
+                <img id="myImage" 
+                data-src-mobile="images/main1/iphone_sosat.png" data-src-desktop="images/main1/ff2.png"
+                    src="images/main1/ff2.png" alt="Главное изображение">
             </div>
+
             <div class="xxx">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mySmallModal">
                     СДЕЛАТЬ ЗАКАЗ
@@ -106,7 +111,6 @@
         </div>
     </div>
 
-    <!-- <div class="poloska2"></div> -->
     <div class="contacts">
 
         <div class="infa">
@@ -118,7 +122,7 @@
             <p>TG. +375292020327</p>
         </div>
 
-        <div class="map">
+        <div id="map-anchor" class="map">
             <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2350.4771467431992!2d27.53558027720693!3d53.90549657245683!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbcff223951e95%3A0xd44431b4cd620944!2z0YPQuy4g0JrQsNC70YzQstCw0YDQuNC50YHQutCw0Y8gOCwg0JzQuNC90YHQuiwg0JzQuNC90YHQutCw0Y8g0L7QsdC70LDRgdGC0YwsINCR0LXQu9Cw0YDRg9GB0Yw!5e0!3m2!1sru!2sus!4v1758456904134!5m2!1sru!2sus"
                 width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"
@@ -129,10 +133,8 @@
 
 </body>
 
-
 <footer>
     <div class="but">
-
         </a>
         <a href="https://www.youtube.com/watch?v=XhnZSCxOYCs&ab_channel=Gollandec">
             <button1>
@@ -154,3 +156,35 @@
     </div>
     Prodicted by Nikita Trukhan
 </footer>
+
+<script>
+    (function () {
+        const img = document.getElementById('myImage');
+        if (!img) return;
+
+        const mobileSrc = img.dataset.srcMobile;
+        const desktopSrc = img.dataset.srcDesktop || img.getAttribute('src');
+
+        function updateImage() {
+            const useMobile = window.outerWidth <= 600;
+            const newSrc = useMobile && mobileSrc ? mobileSrc : desktopSrc;
+            // ставим только если отличается (используем getAttribute, чтобы сравнение работало с относительными путями)
+            if (img.getAttribute('src') !== newSrc) {
+                img.setAttribute('src', newSrc);
+            }
+        }
+
+        // запуск при загрузке
+        updateImage();
+
+        // при ресайзе — с debounce
+        let t;
+        window.addEventListener('resize', () => {
+            clearTimeout(t);
+            t = setTimeout(updateImage, 120);
+        });
+
+        // ориентация на мобилах
+        window.addEventListener('orientationchange', updateImage);
+    })();
+</script>
